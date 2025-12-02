@@ -1,7 +1,7 @@
 import { AppBar, Backdrop, Box, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import React,{lazy, Suspense, useState} from 'react'
 import { Menu as MenuIcon, Search as SearchIcon, Add as AddIcon, Group as GroupIcon, Logout as LogOutIcon, Notifications as NotificaionIcon } from '@mui/icons-material'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -76,6 +76,7 @@ const Header = () => {
                 //     alignItems: "center", 
                 // }}
                 >
+                   <Link to={"/"} style={{textDecoration:"none"}}>
                     <Typography variant='h5'
                         sx={{
                             display: { xs: "none", sm: "block" },
@@ -87,6 +88,7 @@ const Header = () => {
                     >
                         ChatHub
                     </Typography>
+                   </Link>
 
                     <Box sx={{
                         display: { xs: "block", sm: "none" },

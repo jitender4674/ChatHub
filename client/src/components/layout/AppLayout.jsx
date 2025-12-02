@@ -7,7 +7,7 @@ import { sampleChat } from '../../../constants/sampleChatData';
 import { useParams } from 'react-router-dom';
 import Profile from '../specific/Profile';
 
-const AppLayout = () => WrappedComponent => {
+const AppLayout = () => (WrappedComponent) => {
    return (props) => {
 
       const params = useParams();
@@ -24,13 +24,14 @@ const AppLayout = () => WrappedComponent => {
             <Title />
             <Header />
 
-            <Grid container height={"calc(100vh - 4rem)"}>
+            <Grid container height={"calc(100vh)"}>
                <Grid
                   size={{
                      sm: 4, md: 3
                   }}
                   sx={{
-                     display: { xs: "none", sm: "block" }
+                     display: { xs: "none", sm: "block" },
+                     bgcolor: "rgba(220,220,220,0.8)"
                   }}
                   height={"100%"}
                >
@@ -48,7 +49,7 @@ const AppLayout = () => WrappedComponent => {
                      lg: 6,
                   }}
                   height={"100%"}
-                  bgcolor="primary.main">
+                 >
                   <WrappedComponent {...props} />
                </Grid>
 

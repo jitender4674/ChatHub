@@ -1,8 +1,8 @@
+import { useInputValidation } from '6pp';
 import { Button, Dialog, DialogTitle, Stack, TextField, Typography } from '@mui/material';
+import { useState } from 'react';
 import { sampleUsers } from '../../../constants/sampleChatData';
 import SearchUserItem from '../shared/SearchUserItem';
-import { useInputValidation } from '6pp';
-import { useState } from 'react';
 const NewGroup = () => {
 
   const [members, setMembers] = useState(sampleUsers);
@@ -10,27 +10,29 @@ const NewGroup = () => {
 
 
   const selectMemberHandler = (id) =>{
-    setSelectedMembers(prev => [...prev,id])
+    setSelectedMembers(prev => prev.includes(id) ? prev.filter((currElement) => currElement !== id) : [...prev,id])
   };
 
-  console.log(selectedMembers);
+  
   
   const submitHandler =() =>{};
-
-  const groupName = useInputValidation("");
-
+  const closeHandler =() =>{};
 
 
+  const groupName = useInputValidation("New Group");
 
 
 
-  return  (<Dialog open>
+
+
+
+  return  (<Dialog open onClose={closeHandler}>
 
       <Stack p={{ xs: "1rem", sm: "3rem" }} width={"25rem"} spacing={"1rem"}>
 
 
         <DialogTitle textAlign={"center"} variant='h4'>
-          New Group
+          Create New Group
         </DialogTitle>
 
         <TextField label="Group Name" value={groupName.value} onChange={groupName.changeHandler}/>
@@ -47,6 +49,7 @@ const NewGroup = () => {
             user={user}
             key={user._id}
             handler={selectMemberHandler}
+            isAdded={selectedMembers.includes(user._id)}
             />
           ))}
         </Stack>
